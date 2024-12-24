@@ -1,3 +1,5 @@
+import service.ValidationService;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -9,22 +11,10 @@ public class Video {
 	public Date dataPublicacao;
 
 	public Video(String titulo, String descricao, int duracao, String categoria, Date dataPublicacao) {
-
-		if (titulo.isEmpty() || titulo == null) {
-			throw new IllegalArgumentException("Título não pode ser nulo ou  estar vazio");
-		}
-
-		if (descricao.isEmpty() || descricao == null) {
-			throw new IllegalArgumentException("Descrição não pode ser nula ou  estar vazia");
-		}
-
-		if (categoria.isEmpty() || categoria == null){
-			throw new IllegalArgumentException("Categoria não pode ser nula ou  estar vazia");
-		}
-
-		if (duracao <= 0) {
-			throw new IllegalArgumentException("A duração do vídeo precisa ser maior que 0");
-		}
+		ValidationService.validateString(titulo);
+		ValidationService.validateString(descricao);
+		ValidationService.validateString(categoria);
+		ValidationService.validateNumber(duracao);
 
 		this.titulo = titulo;
 		this.descricao = descricao;
@@ -48,4 +38,6 @@ public class Video {
 			return null; // Ignora erros de parsing
 		}
 	}
+
+
 }
