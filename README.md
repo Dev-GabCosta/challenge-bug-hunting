@@ -38,9 +38,9 @@ Você deve clonar o repositório e analisar o código existente para entender co
 
 ### 3. Rodando o sistema
    Para rodar o sistema, basta compilar e executar o arquivo Main.java. Caso use o IntelliJ basta "dar play" ou, caso utilize o terminal, pode rodar via comando. Por exemplo:
-   
+      
 ```
-javac -d bin src/main/Main.java
+javac -d bin src/main/Main.jav   a
 java ./src/main/Main.java
 ```
 O sistema permite que o usuário:

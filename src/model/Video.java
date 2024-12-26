@@ -1,5 +1,7 @@
 package model;
 
+import service.ValidationService;
+
 import javax.xml.crypto.Data;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,6 +14,11 @@ public class Video {
 	private Date dataPublicacao;
 
 	public Video(String titulo, String descricao, int duracao, String categoria, Date dataPublicacao) {
+		ValidationService.validateString(titulo);
+		ValidationService.validateString(descricao);
+		ValidationService.validateString(categoria);
+		ValidationService.validateNumber(duracao);
+
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.duracao = duracao;
