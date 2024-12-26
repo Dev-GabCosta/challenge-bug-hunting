@@ -5,7 +5,7 @@ import view.View;
 import java.util.Scanner;
 
 public class Controller {
-	private  final  View VIEW;
+	private View VIEW;
 	private  static  final Scanner INPUT = new Scanner(System.in);
 
 	public  static  void  controlActions(){
@@ -37,7 +37,7 @@ public class Controller {
 			if (!condition){
 				System.out.println("Digite 1 para continuar no programa ou 0 para sair");
 				option = INPUT.nextInt();
-				condition= 1 == option;
+				condition= 0 == option;
 			}
 
 		}while (!condition);

@@ -1,5 +1,6 @@
 package main;
 
+import controller.Controller;
 import model.Video;
 import repository.FileVideoRepository;
 import service.VideoService;
@@ -14,6 +15,7 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
+		/*
 		Scanner scanner = new Scanner(System.in);
 		VideoService videoService = new VideoServiceImpl(new FileVideoRepository("videos.txt"));
 		SearchStrategy searchStrategy = new TitleSearchStrategy();
@@ -71,5 +73,10 @@ public class Main {
 		}
 
 		scanner.close();
+
+		 */
+		Controller.controlActions();
 	}
+
+
 }
