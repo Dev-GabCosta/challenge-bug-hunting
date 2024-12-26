@@ -1,5 +1,6 @@
 package model;
 
+import javax.xml.crypto.Data;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -41,7 +42,10 @@ public class Video {
 	@Override
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		return titulo + ";" + descricao + ";" + duracao + ";" + categoria + ";" + sdf.format(dataPublicacao);
+		String separator = "------------------------------";
+		String message = "\n" + "Título: " + titulo + ";\n" + "Descrição: " + descricao + ";\n" + "Duração: " + duracao + ";\n" + "Categoria: " + categoria + ";\n" + "Data: " +
+				                 sdf.format(dataPublicacao) + "\n";
+		return separator + message + separator;
 	}
 
 	public static Video fromString(String linha) {
