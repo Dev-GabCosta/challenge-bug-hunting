@@ -42,6 +42,7 @@ public class Controller {
 
 		}while (!condition);
 
+		System.out.println("Saindo...");
 	}
 
 }
