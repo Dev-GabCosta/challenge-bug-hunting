@@ -49,7 +49,7 @@ public class View {
 			videoService.addVideo(video);
 			System.out.println("Vídeo adicionado com sucesso!");
 		} catch (Exception e) {
-			System.out.println("Erro ao adicionar vídeo.");
+			System.out.println("Erro ao adicionar vídeo: " + e.getMessage());
 		}
 
 	}
