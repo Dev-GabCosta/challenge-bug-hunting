@@ -16,8 +16,8 @@ public class View {
 		String menu = """
 				=== Sistema de Gerenciamento de Vídeos ===
 					Escolha uma opção:
-						1. Adicionar vídeo
-						2. Listar vídeos
+						1. Listar vídeos
+						2. Adicionar vídeo
 						3. Pesquisar vídeo por título
 						4. Sair
 				""";
@@ -25,7 +25,7 @@ public class View {
 		System.out.println(menu);
 	}
 
-	public  static  void addVideo(){
+	public static void addVideo() {
 		System.out.print("Digite o título do vídeo: ");
 		String titulo = scanner.nextLine();
 		System.out.print("Digite a descrição do vídeo: ");
@@ -60,6 +60,7 @@ public class View {
 	}
 
 	public static void searchVideoByTitle() {
+
 		System.out.print("Digite o título para busca: ");
 		String query = scanner.nextLine();
 		List<Video> resultados = searchStrategy.search(videoService.listVideos(), query);
