@@ -1,7 +1,11 @@
 package view;
 
 import model.Video;
+import repository.FileVideoRepository;
 import service.VideoService;
+import service.VideoServiceImpl;
+import strategy.SearchStrategy;
+import strategy.TitleSearchStrategy;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,8 +13,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class View {
-	private final Scanner INPUT = new Scanner(System.in);
-	private final static VideoService VIDEOSERVICE;
+	private final static Scanner scanner = new Scanner(System.in);
+	private final static VideoService videoService = new VideoServiceImpl(new FileVideoRepository("videos.txt"));
 
 	public static void displayMenu() {
 		String menu = """
@@ -51,7 +55,7 @@ public class View {
 	}
 
 	public static void listVideos() {
-		List<Video> videos = VIDEOSERVICE.listVideos();
+		List<Video> videos = videoService.listVideos();
 
 		for (Video video : videos) {
 			System.out.println(video);
@@ -60,6 +64,7 @@ public class View {
 	}
 
 	public static void searchVideoByTitle() {
+		SearchStrategy searchStrategy = new TitleSearchStrategy();
 
 		System.out.print("Digite o título para busca: ");
 		String query = scanner.nextLine();
