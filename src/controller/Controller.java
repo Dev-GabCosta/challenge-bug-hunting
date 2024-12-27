@@ -1,14 +1,15 @@
 package controller;
 
+import service.ValidationService;
 import view.View;
 
 import java.util.Scanner;
 
 public class Controller {
 	private View VIEW;
-	private  static  final Scanner INPUT = new Scanner(System.in);
+	private static final Scanner INPUT = new Scanner(System.in);
 
-	public  static  void  controlActions(){
+	public static void controlActions() {
 		boolean condition = false;
 
 		do {
@@ -16,17 +17,17 @@ public class Controller {
 			View.displayMenu();
 			int option = INPUT.nextInt();
 
-			switch (option){
+			switch (option) {
 				case 1:
 					View.listVideos();
 					break;
-				case  2:
+				case 2:
 					View.addVideo();
 					break;
-				case  3:
+				case 3:
 					View.searchVideoByTitle();
 					break;
-				case  4:
+				case 4:
 					condition = true;
 					break;
 				default:
@@ -34,13 +35,18 @@ public class Controller {
 					break;
 			}
 
-			if (!condition){
-				System.out.println("Digite 1 para continuar no programa ou 0 para sair");
+			if (!condition) {
+				String message = "Digite 1 para continuar no programa ou 0 para sair";
+				System.out.println(message);
 				option = INPUT.nextInt();
-				condition= 0 == option;
+
+				if (ValidationService.checkOption(option, message)) {
+					condition = option == 0;
+				}
+
 			}
 
-		}while (!condition);
+		} while (!condition);
 
 		System.out.println("Saindo...");
 	}
