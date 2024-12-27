@@ -1,6 +1,24 @@
 package service;
 
+import java.util.Scanner;
+
 public class ValidationService {
+
+	public static boolean checkOption(int option, String message) {
+		Scanner input = new Scanner(System.in);
+
+		while (option != 1 && option != 0) {
+			System.out.println(message);
+			option = input.nextInt();
+
+			if (option == 1 || option == 0) {
+				break;
+			}
+
+		}
+
+		return true;
+	}
 
 	public static void validateNumber(int number) {
 
