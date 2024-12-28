@@ -27,7 +27,10 @@ public class Controller {
 				case 3:
 					View.searchVideoByTitle();
 					break;
-				case 4:
+				case  4:
+					View.delete();
+					break;
+				case 5:
 					condition = true;
 					break;
 				default:

@@ -6,19 +6,24 @@ import repository.VideoRepository;
 import java.util.List;
 
 public class VideoServiceImpl implements VideoService {
-    private final VideoRepository repository;
+	private final VideoRepository repository;
 
-    public VideoServiceImpl(VideoRepository repository) {
-        this.repository = repository;
-    }
+	public VideoServiceImpl(VideoRepository repository) {
+		this.repository = repository;
+	}
 
-    @Override
-    public void addVideo(Video video) {
-        repository.save(video);
-    }
+	@Override
+	public void addVideo(Video video) {
+		repository.save(video);
+	}
 
-    @Override
-    public List<Video> listVideos() {
-        return repository.findAll();
-    }
+	@Override
+	public List<Video> listVideos() {
+		return repository.findAll();
+	}
+
+	@Override
+	public void deleteVideo(String title) {
+		repository.delete(title);
+	}
 }

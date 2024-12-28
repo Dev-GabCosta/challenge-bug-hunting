@@ -23,7 +23,8 @@ public class View {
 						1. Listar vídeos
 						2. Adicionar vídeo
 						3. Pesquisar vídeo por título
-						4. Sair
+						4. Deletar vídeo
+						5. Sair
 				""";
 
 		System.out.println(menu);
@@ -74,6 +75,12 @@ public class View {
 			System.out.println(video);
 		}
 
+	}
+
+	public static  void delete(){
+		System.out.println("Qual é o título do vídeo que você deseja deletar?");
+		String title = scanner.nextLine();
+		videoService.deleteVideo(title);
 	}
 
 }
