@@ -39,4 +39,24 @@ public class FileVideoRepository implements VideoRepository {
 		}
 		return videos;
 	}
+
+	@Override
+	public void delete(String title) {
+		List<Video> videos = findAll();
+
+		videos.removeIf(video -> video.getTitulo().equalsIgnoreCase(title));
+
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+
+			for (Video video : videos) {
+				writer.write(video.toString());
+				writer.newLine();
+			}
+		} catch (IOException exception) {
+			System.out.println("Ocorreu uma falha ao tentar gravar no arquivo: " + exception.getMessage());
+		}
+
+	}
+
+
 }
