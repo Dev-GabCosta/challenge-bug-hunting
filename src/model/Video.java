@@ -15,8 +15,8 @@ public class Video {
 
 	public Video(String titulo, String descricao, int duracao, String categoria, Date dataPublicacao) {
 		ValidationService.validateString(titulo);
-		ValidationService.validateString(descricao);
-		ValidationService.validateString(categoria);
+		//ValidationService.validateString(descricao);
+		//ValidationService.validateString(categoria);
 		ValidationService.validateNumber(duracao);
 
 		this.titulo = titulo;

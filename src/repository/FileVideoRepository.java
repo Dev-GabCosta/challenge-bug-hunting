@@ -35,7 +35,7 @@ public class FileVideoRepository implements VideoRepository {
 				}
 			}
 		} catch (IOException e) {
-			// Ignorar erros por enquanto
+			System.out.println("Opa! Algo indevido ocorreu por aqui: " + e.getMessage());
 		}
 		return videos;
 	}

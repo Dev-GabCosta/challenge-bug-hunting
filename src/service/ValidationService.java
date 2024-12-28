@@ -40,9 +40,10 @@ public class ValidationService {
 
 			}
 
+		} else {
+			throw new IllegalArgumentException("Esse campo não pode estar vazio nem pode ser nulo");
 		}
 
-		throw new IllegalArgumentException("Esse campo não pode estar vazio nem pode ser nulo");
 	}
 
 }
