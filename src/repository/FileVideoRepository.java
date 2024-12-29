@@ -58,5 +58,30 @@ public class FileVideoRepository implements VideoRepository {
 
 	}
 
+	@Override
+	public void edit(Video video) {
+		List<Video> videos = findAll();
 
+		for (int i = 0; i < videos.size(); i ++){
+			System.out.println(video.getTitulo());
+			if (videos.get(i).getTitulo().equalsIgnoreCase(video.getTitulo())){
+				videos.set(i, video);
+				System.out.println("É igual!");
+				break;
+			}
+
+		}
+
+			try (BufferedWriter write = new BufferedWriter(new FileWriter(file))) {
+
+				for (Video v : videos){
+					write.write(v.toString());
+					write.newLine();
+				}
+
+			} catch (IOException e) {
+				System.out.println("Ocorreu erro ao tentar gravar no arquivo: " + e.getMessage());
+			}
+
+	}
 }

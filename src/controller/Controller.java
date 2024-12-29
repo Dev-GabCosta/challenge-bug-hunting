@@ -30,7 +30,10 @@ public class Controller {
 				case  4:
 					View.delete();
 					break;
-				case 5:
+				case  5:
+					View.editVideo();
+					break;
+				case 6:
 					condition = true;
 					break;
 				default:

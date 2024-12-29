@@ -8,5 +8,6 @@ public interface VideoRepository {
     void save(Video video);
     List<Video> findAll();
     void delete(String title);
+    void edit(Video video);
 
 }

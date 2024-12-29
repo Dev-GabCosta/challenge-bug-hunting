@@ -24,7 +24,8 @@ public class View {
 						2. Adicionar vídeo
 						3. Pesquisar vídeo por título
 						4. Deletar vídeo
-						5. Sair
+						5. Editar vídeo
+						6. Sair
 				""";
 
 		System.out.println(menu);
@@ -77,10 +78,34 @@ public class View {
 
 	}
 
-	public static  void delete(){
+	public static void delete() {
 		System.out.println("Qual é o título do vídeo que você deseja deletar?");
 		String title = scanner.nextLine();
 		videoService.deleteVideo(title);
 	}
 
+	public static void editVideo() {
+		System.out.print("Digite o título do vídeo a ser modificado: ");
+		String titulo = scanner.nextLine();
+		System.out.print("Digite a descrição do vídeo: ");
+		String descricao = scanner.nextLine();
+		System.out.print("Digite a duração do vídeo (em minutos): ");
+		int duracao = scanner.nextInt();
+		scanner.nextLine(); // Consumir a quebra de linha
+		System.out.print("Digite a categoria do vídeo: ");
+		String categoria = scanner.nextLine();
+		System.out.print("Digite a data de publicação (dd/MM/yyyy): ");
+		String dataStr = scanner.nextLine();
+
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			Date dataPublicacao = sdf.parse(dataStr);
+			Video video = new Video(titulo, descricao, duracao, categoria, dataPublicacao);
+			videoService.editVideo(video);
+			System.out.println("Vídeo editado com sucesso!");
+		} catch (Exception e) {
+			System.out.println("Erro ao adicionar vídeo: " + e.getMessage());
+		}
+
+	}
 }

@@ -10,4 +10,6 @@ public interface VideoService {
 	List<Video> listVideos();
 
 	void deleteVideo(String title);
+
+	void editVideo(Video video);
 }
