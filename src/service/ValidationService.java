@@ -1,6 +1,10 @@
 package service;
 
+import model.VideoCategory;
+
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class ValidationService {
 
@@ -46,4 +50,36 @@ public class ValidationService {
 
 	}
 
+	public static void validateCategory(String category) {
+		String categories = Arrays.stream(
+						VideoCategory.values()
+				)
+				                    .map(Enum::name)
+				                    .collect(
+						                    Collectors.joining(", ")
+				                    ).toLowerCase();
+		boolean validCategory = false;
+		String userCategory = category;
+
+		do {
+
+			for (VideoCategory videoCategory : VideoCategory.values()) {
+				System.out.println("Usuário: " + userCategory + ", sistema: " + videoCategory.name());
+				if (userCategory.equalsIgnoreCase(videoCategory.name())) {
+					validCategory = true;
+					break;
+				}
+
+			}
+
+			if (!validCategory){
+				System.out.println("Categoria inválida. as opções são " + categories + ".");
+				System.out.println("Por favor, escolha uma opção válida");
+				userCategory = new Scanner(System.in).nextLine();
+			}
+
+		} while (!validCategory);
+
+
+	}
 }
