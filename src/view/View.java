@@ -2,6 +2,7 @@ package view;
 
 import model.Video;
 import repository.FileVideoRepository;
+import service.ValidationService;
 import service.VideoService;
 import service.VideoServiceImpl;
 import strategy.SearchStrategy;
@@ -41,6 +42,7 @@ public class View {
 		scanner.nextLine(); // Consumir a quebra de linha
 		System.out.print("Digite a categoria do vídeo: ");
 		String categoria = scanner.nextLine();
+		ValidationService.validateCategory(categoria);
 		System.out.print("Digite a data de publicação (dd/MM/yyyy): ");
 		String dataStr = scanner.nextLine();
 
@@ -94,6 +96,7 @@ public class View {
 		scanner.nextLine(); // Consumir a quebra de linha
 		System.out.print("Digite a categoria do vídeo: ");
 		String categoria = scanner.nextLine();
+		ValidationService.validateCategory(categoria);
 		System.out.print("Digite a data de publicação (dd/MM/yyyy): ");
 		String dataStr = scanner.nextLine();
 
