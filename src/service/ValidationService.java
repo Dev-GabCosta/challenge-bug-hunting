@@ -2,6 +2,10 @@ package service;
 
 import model.VideoCategory;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -72,7 +76,7 @@ public class ValidationService {
 
 			}
 
-			if (!validCategory){
+			if (!validCategory) {
 				System.out.println("Categoria inválida. as opções são " + categories + ".");
 				System.out.println("Por favor, escolha uma opção válida");
 				userCategory = new Scanner(System.in).nextLine();
@@ -80,6 +84,26 @@ public class ValidationService {
 
 		} while (!validCategory);
 
-
 	}
+
+	public static String validDate(String date) {
+String  formattedDate = "";
+		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("ddMMuuuu")
+				                                   .withResolverStyle(ResolverStyle.STRICT);
+		try {
+			LocalDate date1 = LocalDate.parse(date, inputFormatter);
+
+			if (!date1.isAfter(LocalDate.now())) {
+				DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+				formattedDate = date1.format(outputFormatter);
+			}
+
+			return formattedDate;
+		} catch (DateTimeException exception) {
+			System.out.println("Essa data não é válida. " + exception.getCause());
+		}
+
+		return "";
+	}
+
 }

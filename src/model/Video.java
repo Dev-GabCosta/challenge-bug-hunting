@@ -3,7 +3,13 @@ package model;
 import service.ValidationService;
 
 import javax.xml.crypto.Data;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Date;
 
 public class Video {
@@ -11,9 +17,9 @@ public class Video {
 	private String descricao;
 	private int duracao; // em minutos
 	private String categoria;
-	private Date dataPublicacao;
+	private String dataPublicacao;
 
-	public Video(String titulo, String descricao, int duracao, String categoria, Date dataPublicacao) {
+	public Video(String titulo, String descricao, int duracao, String categoria, String dataPublicacao) {
 		ValidationService.validateString(titulo);
 		ValidationService.validateString(descricao);
 		ValidationService.validateString(categoria);
@@ -42,23 +48,23 @@ public class Video {
 		return categoria;
 	}
 
-	public Date getDataPublicacao() {
+	public String getDataPublicacao() {
 		return dataPublicacao;
 	}
 
 	@Override
 	public String toString() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		return titulo + ";" + descricao + ";" + duracao + ";" + categoria + ";" + sdf.format(dataPublicacao);
+		return titulo + ";" + descricao + ";" + duracao + ";" + categoria + ";" + dataPublicacao;
 	}
 
 	public static Video fromString(String linha) {
 		try {
 			String[] partes = linha.split(";");
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			return new Video(partes[0], partes[1], Integer.parseInt(partes[2]), partes[3], sdf.parse(partes[4]));
-		} catch (Exception e) {
-			return null; // Ignora erros de parsing
+
+				return new Video(partes[0], partes[1], Integer.parseInt(partes[2]), partes[3], partes[4]);
+		} catch (DateTimeParseException e) {
+			System.out.println("Ocorreu um erro! " + e.getMessage());
+			return null;
 		}
 	}
 }

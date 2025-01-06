@@ -9,8 +9,12 @@ import strategy.SearchStrategy;
 import strategy.TitleSearchStrategy;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class View {
@@ -47,11 +51,15 @@ public class View {
 		String dataStr = scanner.nextLine();
 
 		try {
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			Date dataPublicacao = sdf.parse(dataStr);
-			Video video = new Video(titulo, descricao, duracao, categoria, dataPublicacao);
-			videoService.addVideo(video);
-			System.out.println("Vídeo adicionado com sucesso!");
+			dataStr = ValidationService.validDate(dataStr);
+
+			if (dataStr != null && !dataStr.isEmpty()) {
+				Video video = new Video(titulo, descricao, duracao, categoria, dataStr);
+				videoService.addVideo(video);
+				System.out.println("Vídeo adicionado com sucesso!");
+				return;
+			}
+			System.out.println("Erro ao adicionar vídeo: data inválida.");
 		} catch (Exception e) {
 			System.out.println("Erro ao adicionar vídeo: " + e.getMessage());
 		}
@@ -101,11 +109,16 @@ public class View {
 		String dataStr = scanner.nextLine();
 
 		try {
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			Date dataPublicacao = sdf.parse(dataStr);
-			Video video = new Video(titulo, descricao, duracao, categoria, dataPublicacao);
-			videoService.editVideo(video);
-			System.out.println("Vídeo editado com sucesso!");
+			dataStr = ValidationService.validDate(dataStr);
+
+			if (!dataStr.isEmpty() && dataStr != null) {
+				Video video = new Video(titulo, descricao, duracao, categoria, dataStr);
+				videoService.editVideo(video);
+				System.out.println("Vídeo editado com sucesso!");
+				return;
+			}
+
+			System.out.println("Erro ao editar vídeo: data inválida.");
 		} catch (Exception e) {
 			System.out.println("Erro ao adicionar vídeo: " + e.getMessage());
 		}

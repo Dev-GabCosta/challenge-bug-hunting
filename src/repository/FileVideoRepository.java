@@ -19,7 +19,7 @@ public class FileVideoRepository implements VideoRepository {
 			bw.write(video.toString());
 			bw.newLine();
 		} catch (IOException e) {
-			// Ignorar erros por enquanto
+			System.out.println("Erro au adicionar vídeo: " + e.getMessage());
 		}
 	}
 
